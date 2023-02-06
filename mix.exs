@@ -21,6 +21,7 @@ defmodule FoodTruck.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:distance, "~> 1.0"},
       {:httpoison, "~> 2.0"},
       {:jason, "~> 1.4"},
       {:mock, "~> 0.3.0", only: :test}
