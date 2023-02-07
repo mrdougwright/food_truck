@@ -20,6 +20,10 @@ defmodule FoodTruck do
     |> Enum.sort_by(&(&1["proximity"]))
   end
 
+  def by_food(list, food_type), do: Enum.filter(list, &by_type(food_type, &1))
+  def by_status(list, status), do: Enum.filter(list, &(&1["status"] == status))
+
+  # "Private" Functions
   def add_proximity(%{"location" => %{"latitude" => lat, "longitude" => long}} = truck, my_location) do
     distance = Distance.distance(
       {String.to_float(lat), String.to_float(long)},
@@ -29,5 +33,6 @@ defmodule FoodTruck do
     Map.put(truck, "proximity", distance)
   end
 
-
+  def by_type(food_type, %{"fooditems" => desc}), do: Regex.match?(~r/#{food_type}/, desc)
+  def by_type(_type, _data), do: false
 end
