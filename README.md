@@ -37,7 +37,20 @@ To run and test this application yourself, git clone this repository from GitHub
 mix deps.get
 iex -S mix
 ```
-If I'm feeling fancy and have the time, I may dockerize it for you. Otherwise you'll need Erlang/OTP 25 and Elixir version 1.14.3 locally on your machine.
+If you're feeling fancy, you can run it in docker. Otherwise you'll need Erlang/OTP 25 and Elixir version 1.14.3 locally on your machine.
+
+### Docker
+
+Assuming you have Docker running on your machine, you can run
+```
+docker compose up
+docker compose run app iex -S mix
+```
+to enter the app in the interactive Elixir shell. Try a command, like
+```
+list = FoodTruck.list()
+FoodTruck.closest(list) |> List.first |> Map.get("address")
+```
 
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
